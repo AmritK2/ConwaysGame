@@ -16,68 +16,54 @@ namespace ConwaysGame
             return input == "0000\n0XX0\n0XX0\n0000" ? input : "Invalid";
         }
 
-        public string UnderPopulationDeathShouldReturn(string input)
-        {
-            var r = 0;
-            var c = 0;
-            var output = "";
-
-            for (int i = 0; i < input.Length; i++) 
-            {
-                for (int j = 0; j < input.Length; j++) 
-                {
-                   if (input[j] == '\n')
-                    {
-                        c = 0;
-                        r++;
-                    }
-                    else if (input[j] == 'X')
-                    {
-                       var result = CheckNeighbours(input, r, c);
-                        output = result < 2 ? "dead" : "alive";
-                    }
-                    c++;
-                }
-               
-            }
-            return output;
-        }
-
-        private int CheckNeighbours(string input, int i, int j)
+        private int CheckNeighbours(string input, int row, int col) // i = row, j = column
         {
             int count = 0;
         
-            if (i < input.Length-1)
+            if (row < input.Length-1)
             {
-                if (input[(i - 1)] == 'X' && input[j - 1] == 'X')
+                if (row == 0)
+                {
+                    if (input[col - 1] == 'X')
+                    {
+                        count++;
+                    }
+                  
+                    else if (input[col + 1] == 'X')
+                    {
+                        count++;
+                    }
+                }
+                else if (input[(row - 1)] == 'X' && input[col - 1] == 'X')
                 {
                     count++;
                 }
-                else if (input[(i - 1)] == 'X')
+                else if (input[(row - 1)] == 'X')
                 {
                     count++;
                 }
-                else if (input[(i - 1)] == 'X' && input[j + 1] == 'X')
+                else if (input[(row - 1)] == 'X' && input[col + 1] == 'X')
                 {
                     count++;
                 }
-                else if (input[(i + 1)] == 'X')
+                
+                else if (input[(row + 1)] == 'X')
                 {
                     count++;
                 }
-                else if (input[(i + 1)] == 'X' && input[j + 1] == 'X')
+                else if (input[(row + 1)] == 'X' && input[col + 1] == 'X')
                 {
                     count++;
                 }
-                else if (input[(i + 1)] == 'X')
+                else if (input[(row + 1)] == 'X')
                 {
                     count++;
                 }
-                else if (input[(i + 1)] == 'X' && input[j - 1] == 'X')
+                else if (input[(row + 1)] == 'X' && input[col - 1] == 'X')
                 {
                     count++;
                 }
-                else if (input[j - 1] == 'X')
+                else if (input[col - 1] == 'X')
                 {
                     count++;
                 }
@@ -88,10 +74,44 @@ namespace ConwaysGame
 
         public string UnderPopulationTransformedString(string input)
         {
+            var row = 0;
+            var col = 0;
+            var output = "";
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                for (int j = 0; j < input.Length; j++)
+                {
+                    if (input[j] == '\n')
+                    {
+                        col = 0;
+                        row++;
+                    }
+                    else if (input[j] == 'X')
+                    {
+                       var result = CheckNeighbours(input, row, col);
+                        if (result < 2)
+                        {
+                            char[] ch = input.ToCharArray();
+                            ch[j] = '0';
+                            output = new string(ch);
+                        }
+                        else
+                            output = input;
+                    }
+                    col++;
+                }
+
+            }
+            return output;
+        }
+
+        public string NextGenTransformedString(string input)
+        {
             var r = 0;
             var c = 0;
             var output = "";
-
+            
             for (int i = 0; i < input.Length; i++)
             {
                 for (int j = 0; j < input.Length; j++)
@@ -103,26 +123,28 @@ namespace ConwaysGame
                     }
                     else if (input[j] == 'X')
                     {
-                       var result = CheckNeighbours(input, r, c);
+                        var result = CheckNeighbours(input, r, c);
                         if (result < 2)
                         {
                             char[] ch = input.ToCharArray();
                             ch[j] = '0';
                             output = new string(ch);
+                            
                         }
-                        else
-                            output = input;
+                        else if (result == 2 || result <= 3)
+                        {
+                            char[] ch = input.ToCharArray();
+                            ch[j] = 'X';
+                            output = new string(ch);
+                        }
+                        
                     }
                     c++;
                 }
-
             }
             return output;
         }
 
-        public string NextGenTransformedString(string input)
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }
