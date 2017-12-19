@@ -23,7 +23,7 @@ namespace ConwaysGame
         public void ShouldReturnDead (string input)
         {
             Pattern getPattern = new Pattern();
-            string returnedPattern = getPattern.BlinkerPatternShouldReturn(input);
+            string returnedPattern = getPattern.UnderPopulationDeathShouldReturn(input);
             string actualPattern = "dead";
             Assert.AreEqual(actualPattern, returnedPattern);
         }

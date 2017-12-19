@@ -16,7 +16,7 @@ namespace ConwaysGame
             return input == "0000\n0XX0\n0XX0\n0000" ? input : "Invalid";
         }
 
-        public string BlinkerPatternShouldReturn(string input)
+        public string UnderPopulationDeathShouldReturn(string input)
         {
             var r = 0;
             var c = 0;
@@ -33,7 +33,7 @@ namespace ConwaysGame
                     }
                     else if (input[j] == 'X')
                     {
-                        result = Somefunction(input, r, c);
+                        result = CheckNeighbours(input, r, c);
                        
                     }
                     c++;
@@ -43,7 +43,7 @@ namespace ConwaysGame
             return result;
         }
 
-        private string Somefunction(string input, int i, int j)
+        private string CheckNeighbours(string input, int i, int j)
         {
             int count = 0;
         
