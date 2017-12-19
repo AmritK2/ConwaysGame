@@ -11,13 +11,23 @@ namespace ConwaysGame
     public class PatternShould
     {
         [TestCase("0000\n0XX0\n0XX0\n0000")]
-        public void TestGame(string input)
+        public void ShouldReturnBlockPattern(string input)
         {
             Pattern getPattern = new Pattern();
             string returnedPattern = getPattern.BlockPatternShouldReturn(input);
             string actualPattern = "0000\n0XX0\n0XX0\n0000";
             Assert.AreEqual(actualPattern, returnedPattern);
         }
+
+        [TestCase("000\n0X0\n000")]
+        public void ShouldReturnDead (string input)
+        {
+            Pattern getPattern = new Pattern();
+            string returnedPattern = getPattern.BlinkerPatternShouldReturn(input);
+            string actualPattern = "dead";
+            Assert.AreEqual(actualPattern, returnedPattern);
+        }
+
 
     }
 }
