@@ -29,10 +29,10 @@ namespace ConwaysGame
         }
 
         [TestCase("000\n0X0\n000")]
-        public void ShouldReturnUnderpopulatedString(string input)
+        public void ShouldReturnUnderpopulatedTransformedString(string input)
         {
             Pattern getPattern = new Pattern();
-            string returnedPattern = getPattern.UnderPopulationDeathStringShouldReturn(input);
+            string returnedPattern = getPattern.UnderPopulationTransformedString(input);
             string actualPattern = "000\n000\n000";
             Assert.AreEqual(actualPattern, returnedPattern);
         }

@@ -20,7 +20,6 @@ namespace ConwaysGame
         {
             var r = 0;
             var c = 0;
-            var result = 0;
             var output = "";
 
             for (int i = 0; i < input.Length; i++) 
@@ -34,11 +33,12 @@ namespace ConwaysGame
                     }
                     else if (input[j] == 'X')
                     {
-                        result = CheckNeighbours(input, r, c);
+                       var result = CheckNeighbours(input, r, c);
+                        output = result < 2 ? "dead" : "alive";
                     }
                     c++;
                 }
-               output = result < 2 ? "dead" : "alive";
+               
             }
             return output;
         }
@@ -83,14 +83,41 @@ namespace ConwaysGame
                 }
             }
             return count;
-            // var output = count < 2 ? "dead" : "alive";
-            // return output;
         }
 
 
-        public string UnderPopulationDeathStringShouldReturn(string input)
+        public string UnderPopulationTransformedString(string input)
         {
-            throw new NotImplementedException();
+            var r = 0;
+            var c = 0;
+            var output = "";
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                for (int j = 0; j < input.Length; j++)
+                {
+                    if (input[j] == '\n')
+                    {
+                        c = 0;
+                        r++;
+                    }
+                    else if (input[j] == 'X')
+                    {
+                       var result = CheckNeighbours(input, r, c);
+                        if (result < 2)
+                        {
+                            char[] ch = input.ToCharArray();
+                            ch[j] = '0';
+                            output = new string(ch);
+                        }
+                        else
+                            output = input;
+                    }
+                    c++;
+                }
+
+            }
+            return output;
         }
     }
 }
