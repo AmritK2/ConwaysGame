@@ -20,7 +20,8 @@ namespace ConwaysGame
         {
             var r = 0;
             var c = 0;
-            var result = "";
+            var result = 0;
+            var output = "";
 
             for (int i = 0; i < input.Length; i++) 
             {
@@ -34,16 +35,15 @@ namespace ConwaysGame
                     else if (input[j] == 'X')
                     {
                         result = CheckNeighbours(input, r, c);
-                       
                     }
                     c++;
                 }
-                
+               output = result < 2 ? "dead" : "alive";
             }
-            return result;
+            return output;
         }
 
-        private string CheckNeighbours(string input, int i, int j)
+        private int CheckNeighbours(string input, int i, int j)
         {
             int count = 0;
         
@@ -82,10 +82,15 @@ namespace ConwaysGame
                     count++;
                 }
             }
-            var output = count < 2 ? "dead" : "alive";
-            return output;
+            return count;
+            // var output = count < 2 ? "dead" : "alive";
+            // return output;
         }
 
 
+        public string UnderPopulationDeathStringShouldReturn(string input)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

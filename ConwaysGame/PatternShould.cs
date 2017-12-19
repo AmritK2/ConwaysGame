@@ -28,6 +28,13 @@ namespace ConwaysGame
             Assert.AreEqual(actualPattern, returnedPattern);
         }
 
-
+        [TestCase("000\n0X0\n000")]
+        public void ShouldReturnUnderpopulatedString(string input)
+        {
+            Pattern getPattern = new Pattern();
+            string returnedPattern = getPattern.UnderPopulationDeathStringShouldReturn(input);
+            string actualPattern = "000\n000\n000";
+            Assert.AreEqual(actualPattern, returnedPattern);
+        }
     }
 }
