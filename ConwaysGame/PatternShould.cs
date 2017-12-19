@@ -20,7 +20,7 @@ namespace ConwaysGame
         }
 
         [TestCase("000\n0X0\n000")]
-        public void ShouldReturnDead (string input)
+        public void ShouldReturnUnderPopulatedDead (string input)
         {
             Pattern getPattern = new Pattern();
             string returnedPattern = getPattern.UnderPopulationDeathShouldReturn(input);
