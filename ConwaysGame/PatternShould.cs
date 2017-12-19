@@ -20,20 +20,20 @@ namespace ConwaysGame
         }
 
         [TestCase("000\n0X0\n000")]
-        public void ShouldReturnUnderPopulatedDead (string input)
-        {
-            Pattern getPattern = new Pattern();
-            string returnedPattern = getPattern.UnderPopulationDeathShouldReturn(input);
-            string actualPattern = "dead";
-            Assert.AreEqual(actualPattern, returnedPattern);
-        }
-
-        [TestCase("000\n0X0\n000")]
-        public void ShouldReturnUnderpopulatedTransformedString(string input)
+        public void ShouldReturnUnderpopulatedTransformedString(string input) // 1st rule
         {
             Pattern getPattern = new Pattern();
             string returnedPattern = getPattern.UnderPopulationTransformedString(input);
             string actualPattern = "000\n000\n000";
+            Assert.AreEqual(actualPattern, returnedPattern);
+        }
+
+        [TestCase("0X00\n0X00\n0X00\n0000")]
+        public void ShouldReturnNextGenTransformedString(string input) //2nd rule
+        {
+            Pattern getPattern = new Pattern();
+            string returnedPattern = getPattern.NextGenTransformedString(input);
+            string actualPattern = "0000\n0X00\n0000\n0000";
             Assert.AreEqual(actualPattern, returnedPattern);
         }
     }

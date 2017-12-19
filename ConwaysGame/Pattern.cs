@@ -119,5 +119,10 @@ namespace ConwaysGame
             }
             return output;
         }
+
+        public string NextGenTransformedString(string input)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
