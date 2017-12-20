@@ -31,7 +31,7 @@ namespace ConwaysGame
                     {
                         var numberOfLiveNeighbours = CheckNeighboursWithMinMax(array, row, column);
                             
-                        if (numberOfLiveNeighbours < 2)
+                        if (numberOfLiveNeighbours < 2 || numberOfLiveNeighbours > 3)
                         {
                             result += '0';
                         }

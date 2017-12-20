@@ -34,7 +34,7 @@ namespace ConwaysGame
                   "000\n" +
                   "000\n" +
                   "000")]
-        public void ShouldReturnUnderpopulatedTransformedString(string input, string expected) 
+        public void ShouldReturnUnderpopulatedDeadTransformedString(string input, string expected) 
         {
             Pattern getPattern = new Pattern();
             string returnedPattern = getPattern.TransformedString(input);
@@ -71,7 +71,24 @@ namespace ConwaysGame
             Assert.AreEqual(2, returnedPattern);
         }
 
-        
+        [TestCase("00000\n" +
+                  "00X00\n" +
+                  "00X00\n" +
+                  "00X00\n" +
+                  "00000",
+
+                  "00000\n" +
+                  "00000\n" +
+                  "00X00\n" +
+                  "00000\n" +
+                  "00000")]
+
+        public void ShouldReturnOverPopulationDeath(string input, string expected)
+        {
+            Pattern getPattern = new Pattern();
+            string returnedPattern = getPattern.TransformedString(input);
+            Assert.AreEqual(expected, returnedPattern);
+        }
 
 
     }
