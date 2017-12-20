@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 using NUnit.Framework.Api;
@@ -109,107 +110,65 @@ namespace ConwaysGame
 
         public string NextGenTransformedString(string input)
         {
-            var r = 0;
-            var c = 0;
-            var output = "";
+            var array = input.Split('\n');
+            var result = "";
 
-//            string[] array = input.Split('\n');
-//            for (int i = 0; i < array.Length; i++)
-//            {
-//                if (array[i] == "X")
-//                {
-//                    CheckNeighboursWithMinMax(array, i);
-//                }
-//            }
-//           
-
-            for (int i = 0; i < input.Length; i++)
+            for (int row = 0; row < array.Length; row++) // rows
             {
-                for (int j = 0; j < input.Length; j++)
+                for (int column = 0; column < array[0].Length; column++) // columns
                 {
-                    if (input[j] == '\n')
+                    if (array[row][column] == 'X')
                     {
-                        c = 0;
-                        r++;
-                    }
-                    else if (input[j] == 'X')
-                    {
-                        var result = CheckNeighboursWithMinMax(input, r, c);
+                        var numberOfLiveNeighbours = CheckNeighboursWithMinMax(array, row, column);
                             
-                        if (result < 2)
+                        if (numberOfLiveNeighbours < 2)
                         {
-                            char[] ch = input.ToCharArray();
-                            ch[j] = '0';
-                            output = new string(ch);
+                            result += '0';
                         }
-                        else if (result == 2 || result <= 3)
+                        else if (numberOfLiveNeighbours == 2 || numberOfLiveNeighbours <= 3)
                         {
-                            char[] ch = input.ToCharArray();
-                            ch[j] = 'X';
-                            output = new string(ch);
+                            result += 'X';
                         }
+                        
                     }
-                    c++;
+                    else
+                    {
+                        result += '0';
+                    }
                 }
+                result += '\n';
             }
-            return output;
+           
+            return result.TrimEnd('\n');
         }
 
-        private int CheckNeighboursWithMinMax(string input, int x, int y)
+        private int CheckNeighboursWithMinMax(string[] array, int row, int column)
         {
-            int totalColumns = 0;
-            int totalRows = 0;
+
+            int totalColumns = array[0].Length -1;
+            int totalRows = array.Length - 1;
             int count = 0;
-            for (int b = 0; b < input.Length; b++)
-            {
-                
-                if (input[b] == '\n')
-                {
-                    totalColumns = -1;
-                    totalRows++;
-                }
-                totalColumns++;
-            }
             
-            int minX = Math.Max(0, x - 1);
-            int maxX = Math.Min(x + 1, totalRows);
-            int minY = Math.Max(0, y - 1);
-            int maxY = Math.Min(y + 1, totalColumns);
+            int minRows = Math.Max(0, row - 1);
+            int maxRows = Math.Min(row + 1, totalRows);
+            int minColumns = Math.Max(0, column - 1);
+            int maxColumns = Math.Min(column + 1, totalColumns);
 
-            if (input[(minX - 1)] == 'X' && input[minY - 1] == 'X')
+            for (int rowCoord = minRows; rowCoord <= maxRows; rowCoord++)
             {
-                count++;
-            }
-            else if (input[minX] == 'X')
-            {
-                count++;
-            }
-            else if (input[(maxY - 1)] == 'X' && input[minX + 1] == 'X')
-            {
-                count++;
-            }
+                for (int colCoord = minColumns; colCoord <= maxColumns; colCoord++)
+                {
+                    if (array[rowCoord][colCoord] == 'X')
+                    {
+                        if (rowCoord == row && colCoord == column)
+                        {
+                            continue;
+                        }
+                            count++;
+                    }
 
-            else if (input[maxY] == 'X')
-            {
-                count++;
+                }
             }
-            else if (input[(maxX + 1)] == 'X' && input[maxY + 1] == 'X')
-            {
-                count++;
-            }
-            else if (input[maxX] == 'X')
-            {
-                count++;
-            }
-            else if (input[(maxX - 1)] == 'X' && input[minY + 1] == 'X')
-            {
-                count++;
-            }
-            else if (input[minY] == 'X')
-            {
-                count++;
-            }
-       
             return count;
         }
 

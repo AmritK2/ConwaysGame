@@ -10,13 +10,20 @@ namespace ConwaysGame
     [TestFixture]
     public class PatternShould
     {
-        [TestCase("0000\n0XX0\n0XX0\n0000")]
-        public void ShouldReturnBlockPattern(string input)
+        [TestCase("0000\n" +
+                  "0XX0\n" +
+                  "0XX0\n" +
+                  "0000",
+
+                  "0000\n" +
+                  "0XX0\n" +
+                  "0XX0\n" +
+                  "0000")]
+        public void ShouldReturnBlockPattern(string input, string expected)
         {
             Pattern getPattern = new Pattern();
             string returnedPattern = getPattern.BlockPatternShouldReturn(input);
-            string actualPattern = "0000\n0XX0\n0XX0\n0000";
-            Assert.AreEqual(actualPattern, returnedPattern);
+            Assert.AreEqual(expected, returnedPattern);
         }
 
         [TestCase("000\n0X0\n000")]
