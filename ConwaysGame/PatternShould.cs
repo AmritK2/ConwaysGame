@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,6 +56,23 @@ namespace ConwaysGame
             string returnedPattern = getPattern.TransformedString(input);
             Assert.AreEqual(expected, returnedPattern);
         }
-       
+
+        [TestCase(new [] {"0X00",
+                          "0X00",
+                          "0X00",
+                          "0000" },
+            
+                            1,
+                            1)]
+        public void ShouldCheckLiveNeighbours(string[] array, int row, int column)
+        {
+            Pattern getPattern = new Pattern();
+            int returnedPattern = getPattern.CheckNeighboursWithMinMax(array, row, column);
+            Assert.AreEqual(2, returnedPattern);
+        }
+
+        
+
+
     }
 }

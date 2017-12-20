@@ -52,7 +52,7 @@ namespace ConwaysGame
             return result.TrimEnd('\n');
         }
 
-        private int CheckNeighboursWithMinMax(string[] array, int row, int column)
+        public int CheckNeighboursWithMinMax(string[] array, int row, int column)
         {
 
             int totalColumns = array[0].Length -1;
