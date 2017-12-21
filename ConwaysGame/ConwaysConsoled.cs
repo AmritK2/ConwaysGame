@@ -10,13 +10,23 @@ namespace ConwaysGame
     {
         static void Main(string[] args)
         {
-            string input = "00000\n, 00XX0\n, 0XX00\n, 00X00\n, 00000";
+            string input = "00000\n" +
+                           "00XX0\n" +
+                           "0XX00\n" +
+                           "00X00\n" +
+                           "00000";
             while (true)
             {
                 Pattern pattern = new Pattern();
                 var result = pattern.TransformedCellString(input);
-                Console.WriteLine(result);
-                input = result;
+
+                while (result != input)
+                {
+                    Console.WriteLine(result);
+                    Console.WriteLine("---------");
+                    input = result;
+                }
+
             }
 
         }
