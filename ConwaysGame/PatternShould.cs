@@ -11,15 +11,15 @@ namespace ConwaysGame
     [TestFixture]
     public class PatternShould
     {
-        [TestCase("0000\n" + //input
-                  "0XX0\n" +
-                  "0XX0\n" +
-                  "0000",
+        [TestCase("****\n" + //input
+                  "*11*\n" +
+                  "*11*\n" +
+                  "****",
 
-                  "0000\n" + // output
-                  "0XX0\n" +
-                  "0XX0\n" +
-                  "0000")]
+                  "****\n" + // output
+                  "*11*\n" +
+                  "*11*\n" +
+                  "****")]
         public void ShouldReturnBlockPattern(string input, string expected)
         {
             Pattern getPattern = new Pattern();
@@ -27,13 +27,13 @@ namespace ConwaysGame
             Assert.AreEqual(expected, returnedPattern);
         }
 
-        [TestCase("000\n" +
-                  "0X0\n" +
-                  "000",
+        [TestCase("***\n" +
+                  "*1*\n" +
+                  "***",
 
-                  "000\n" +
-                  "000\n" +
-                  "000")]
+                  "***\n" +
+                  "***\n" +
+                  "***")]
         public void ShouldReturnUnderpopulatedDeadTransformedString(string input, string expected) 
         {
             Pattern getPattern = new Pattern();
@@ -41,15 +41,15 @@ namespace ConwaysGame
             Assert.AreEqual(expected, returnedPattern);
         }
 
-        [TestCase("0X00\n" +
-                  "0X00\n" +
-                  "0X00\n" +
-                  "0000",
+        [TestCase("*1**\n" +
+                  "*1**\n" +
+                  "*1**\n" +
+                  "****",
 
-                  "0000\n" +
-                  "XXX0\n" +
-                  "0000\n" +
-                  "0000")]
+                  "****\n" +
+                  "111*\n" +
+                  "****\n" +
+                  "****")]
         public void ShouldReturnNextGenTransformedString(string input, string expected) //2nd rule
         {
             Pattern getPattern = new Pattern();
@@ -57,10 +57,10 @@ namespace ConwaysGame
             Assert.AreEqual(expected, returnedPattern);
         }
 
-        [TestCase(new [] {"0X00",
-                          "0X00",
-                          "0X00",
-                          "0000" },
+        [TestCase(new [] {"*1**",
+                          "*1**",
+                          "*1**",
+                          "****" },
             
                             1,
                             1)]
@@ -71,17 +71,17 @@ namespace ConwaysGame
             Assert.AreEqual(2, returnedPattern);
         }
 
-        [TestCase("00000\n" +
-                  "00X00\n" +
-                  "00X00\n" +
-                  "00X00\n" +
-                  "00000",
+        [TestCase("*****\n" +
+                  "**1**\n" +
+                  "**1**\n" +
+                  "**1**\n" +
+                  "*****",
 
-                  "00000\n" +
-                  "00000\n" +
-                  "0XXX0\n" +
-                  "00000\n" +
-                  "00000")]
+                  "*****\n" +
+                  "*****\n" +
+                  "*111*\n" +
+                  "*****\n" +
+                  "*****")]
 
         public void ShouldReturnBlinkerString(string input, string expected)
         {
@@ -90,19 +90,19 @@ namespace ConwaysGame
             Assert.AreEqual(expected, returnedPattern);
         }
 
-        [TestCase("000000\n" +
-                  "000X00\n" +
-                  "0X00X0\n" +
-                  "0X00X0\n" +
-                  "00X000\n"+
-                  "000000",
+        [TestCase("******\n" +
+                  "***1**\n" +
+                  "*1**1*\n" +
+                  "*1**1*\n" +
+                  "**1***\n"+
+                  "******",
 
-                  "000000\n" +
-                  "000000\n" +
-                  "00XXX0\n" +
-                  "0XXX00\n" +
-                  "000000\n"+
-                  "000000")]
+                  "******\n" +
+                  "******\n" +
+                  "**111*\n" +
+                  "*111**\n" +
+                  "******\n"+
+                  "******")]
 
         public void ShouldReturnToadString(string input, string expected)
         {

@@ -15,7 +15,7 @@ namespace ConwaysGame
 
         public string BlockPatternShouldReturn(string input)
         {
-            return input == "0000\n0XX0\n0XX0\n0000" ? input : "Invalid";
+            return input == "****\n*11*\n*11*\n****" ? input : "Invalid";
         }
 
         public string TransformedCellString(string input)
@@ -27,29 +27,29 @@ namespace ConwaysGame
             {
                 for (int column = 0; column < array[0].Length; column++) // columns
                 {
-                    if (array[row][column] == '0')
+                    if (array[row][column] == '*')
                     {
                         var numberOfLiveNeighbours = CheckNeighboursWithMinMax(array, row, column);
 
                         if (numberOfLiveNeighbours == 3)
                         {
-                            result += 'X';
+                            result += '1';
                         }
                         else
-                            result += '0';
+                            result += '*';
                     }
 
-                    if (array[row][column] == 'X')
+                    if (array[row][column] == '1')
                     {
                         var numberOfLiveNeighbours = CheckNeighboursWithMinMax(array, row, column);
                             
                         if (numberOfLiveNeighbours < 2 || numberOfLiveNeighbours > 3)
                         {
-                            result += '0';
+                            result += '*';
                         }
                         else if (numberOfLiveNeighbours == 2 || numberOfLiveNeighbours == 3)
                         {
-                            result += 'X';
+                            result += '1';
                         }
                         
                     }
@@ -76,7 +76,7 @@ namespace ConwaysGame
             {
                 for (int colCoord = minColumns; colCoord <= maxColumns; colCoord++)
                 {
-                    if (array[rowCoord][colCoord] == 'X')
+                    if (array[rowCoord][colCoord] == '1')
                     {
                         if (rowCoord == row && colCoord == column)
                         {

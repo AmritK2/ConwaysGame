@@ -10,11 +10,11 @@ namespace ConwaysGame
     {
         static void Main(string[] args)
         {
-            string input = "00000\n" +
-                           "00XX0\n" +
-                           "0XX00\n" +
-                           "00X00\n" +
-                           "00000";
+            string input = "*****\n" +
+                           "**11*\n" +
+                           "*11**\n" +
+                           "**1**\n" +
+                           "*****";
             while (true)
             {
                 Pattern pattern = new Pattern();
