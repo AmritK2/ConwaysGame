@@ -37,7 +37,7 @@ namespace ConwaysGame
         public void ShouldReturnUnderpopulatedDeadTransformedString(string input, string expected) 
         {
             Pattern getPattern = new Pattern();
-            string returnedPattern = getPattern.TransformedStringForLiveCells(input);
+            string returnedPattern = getPattern.TransformedCellString(input);
             Assert.AreEqual(expected, returnedPattern);
         }
 
@@ -47,13 +47,13 @@ namespace ConwaysGame
                   "0000",
 
                   "0000\n" +
-                  "0X00\n" +
+                  "XXX0\n" +
                   "0000\n" +
                   "0000")]
         public void ShouldReturnNextGenTransformedString(string input, string expected) //2nd rule
         {
             Pattern getPattern = new Pattern();
-            string returnedPattern = getPattern.TransformedStringForLiveCells(input);
+            string returnedPattern = getPattern.TransformedCellString(input);
             Assert.AreEqual(expected, returnedPattern);
         }
 
@@ -69,25 +69,6 @@ namespace ConwaysGame
             Pattern getPattern = new Pattern();
             int returnedPattern = getPattern.CheckNeighboursWithMinMax(array, row, column);
             Assert.AreEqual(2, returnedPattern);
-        }
-
-        [TestCase("00000\n" +
-                  "00X00\n" +
-                  "00X00\n" +
-                  "00X00\n" +
-                  "00000",
-
-                  "00000\n" +
-                  "00000\n" +
-                  "00X00\n" +
-                  "00000\n" +
-                  "00000")]
-
-        public void ShouldReturnOverPopulationDeath(string input, string expected)
-        {
-            Pattern getPattern = new Pattern();
-            string returnedPattern = getPattern.TransformedStringForLiveCells(input);
-            Assert.AreEqual(expected, returnedPattern);
         }
 
         [TestCase("00000\n" +

@@ -18,7 +18,7 @@ namespace ConwaysGame
             return input == "0000\n0XX0\n0XX0\n0000" ? input : "Invalid";
         }
 
-        public string TransformedStringForLiveCells(string input)
+        public string TransformedCellString(string input)
         {
             var array = input.Split('\n');
             var result = "";
@@ -27,6 +27,18 @@ namespace ConwaysGame
             {
                 for (int column = 0; column < array[0].Length; column++) // columns
                 {
+                    if (array[row][column] == '0')
+                    {
+                        var numberOfLiveNeighbours = CheckNeighboursWithMinMax(array, row, column);
+
+                        if (numberOfLiveNeighbours == 3)
+                        {
+                            result += 'X';
+                        }
+                        else
+                            result += '0';
+                    }
+
                     if (array[row][column] == 'X')
                     {
                         var numberOfLiveNeighbours = CheckNeighboursWithMinMax(array, row, column);
@@ -40,11 +52,6 @@ namespace ConwaysGame
                             result += 'X';
                         }
                         
-                    }
-                    
-                    else
-                    {
-                        result += '0';
                     }
                 }
                 result += '\n';
