@@ -50,7 +50,7 @@
   <ItemGroup>
     <Compile Include="Pattern.cs" />
     <Compile Include="PatternShould.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="ConwaysConsoled.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

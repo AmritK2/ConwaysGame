@@ -89,5 +89,27 @@ namespace ConwaysGame
             string returnedPattern = getPattern.TransformedCellString(input);
             Assert.AreEqual(expected, returnedPattern);
         }
+
+        [TestCase("000000\n" +
+                  "000X00\n" +
+                  "0X00X0\n" +
+                  "0X00X0\n" +
+                  "00X000\n"+
+                  "000000",
+
+                  "000000\n" +
+                  "000000\n" +
+                  "00XXX0\n" +
+                  "0XXX00\n" +
+                  "000000\n"+
+                  "000000")]
+
+        public void ShouldReturnToadString(string input, string expected)
+        {
+            Pattern getPattern = new Pattern();
+            string returnedPattern = getPattern.TransformedCellString(input);
+            Assert.AreEqual(expected, returnedPattern);
+        }
+
     }
 }
