@@ -83,10 +83,10 @@ namespace ConwaysGame
                   "00000\n" +
                   "00000")]
 
-        public void ShouldReturnReproducedString(string input, string expected)
+        public void ShouldReturnBlinkerString(string input, string expected)
         {
             Pattern getPattern = new Pattern();
-            string returnedPattern = getPattern.TransformedStringForDeadCells(input);
+            string returnedPattern = getPattern.TransformedCellString(input);
             Assert.AreEqual(expected, returnedPattern);
         }
     }
