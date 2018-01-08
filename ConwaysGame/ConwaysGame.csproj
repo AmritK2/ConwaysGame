@@ -48,8 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Pattern.cs" />
-    <Compile Include="PatternShould.cs" />
+    <Compile Include="CheckingCells.cs" />
+    <Compile Include="CheckingCellsShould.cs" />
     <Compile Include="ConwaysConsoled.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

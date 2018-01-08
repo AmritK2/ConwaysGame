@@ -9,7 +9,7 @@ using NUnit.Framework;
 namespace ConwaysGame
 {
     [TestFixture]
-    public class PatternShould
+    public class CheckingCellsShould
     {
         [TestCase("****\n" + //input
                   "*11*\n" +
@@ -22,8 +22,8 @@ namespace ConwaysGame
                   "****")]
         public void ShouldReturnBlockPattern(string input, string expected)
         {
-            Pattern getPattern = new Pattern();
-            string returnedPattern = getPattern.BlockPatternShouldReturn(input);
+            CheckingCells getPattern = new CheckingCells();
+            string returnedPattern = getPattern.TransformedCellString(input);
             Assert.AreEqual(expected, returnedPattern);
         }
 
@@ -36,7 +36,7 @@ namespace ConwaysGame
                   "***")]
         public void ShouldReturnUnderpopulatedDeadTransformedString(string input, string expected) 
         {
-            Pattern getPattern = new Pattern();
+            CheckingCells getPattern = new CheckingCells();
             string returnedPattern = getPattern.TransformedCellString(input);
             Assert.AreEqual(expected, returnedPattern);
         }
@@ -52,7 +52,7 @@ namespace ConwaysGame
                   "****")]
         public void ShouldReturnNextGenTransformedString(string input, string expected) //2nd rule
         {
-            Pattern getPattern = new Pattern();
+            CheckingCells getPattern = new CheckingCells();
             string returnedPattern = getPattern.TransformedCellString(input);
             Assert.AreEqual(expected, returnedPattern);
         }
@@ -66,8 +66,8 @@ namespace ConwaysGame
                             1)]
         public void ShouldCheckLiveNeighbours(string[] array, int row, int column)
         {
-            Pattern getPattern = new Pattern();
-            int returnedPattern = getPattern.CheckNeighboursWithMinMax(array, row, column);
+            CheckingCells getPattern = new CheckingCells();
+            int returnedPattern = getPattern.CheckNeighbours(array, row, column);
             Assert.AreEqual(2, returnedPattern);
         }
 
@@ -85,7 +85,7 @@ namespace ConwaysGame
 
         public void ShouldReturnBlinkerString(string input, string expected)
         {
-            Pattern getPattern = new Pattern();
+            CheckingCells getPattern = new CheckingCells();
             string returnedPattern = getPattern.TransformedCellString(input);
             Assert.AreEqual(expected, returnedPattern);
         }
@@ -106,7 +106,7 @@ namespace ConwaysGame
 
         public void ShouldReturnToadString(string input, string expected)
         {
-            Pattern getPattern = new Pattern();
+            CheckingCells getPattern = new CheckingCells();
             string returnedPattern = getPattern.TransformedCellString(input);
             Assert.AreEqual(expected, returnedPattern);
         }

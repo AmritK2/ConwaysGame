@@ -28,7 +28,7 @@ namespace ConwaysGame
                            "*************************";
             while (true)
             {
-                Pattern pattern = new Pattern();
+                CheckingCells pattern = new CheckingCells();
                 var result = pattern.TransformedCellString(input);
 
 
