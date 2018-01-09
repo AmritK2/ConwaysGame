@@ -87,7 +87,6 @@ namespace ConwaysGame
                 {
                     if (array[rowCoord][colCoord] == '1')
                     {
-                        //extract
                         if (rowCoord == row && colCoord == column)
                         {
                             continue;
